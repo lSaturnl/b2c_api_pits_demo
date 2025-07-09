@@ -14,3 +14,4 @@ class Client(Base, UUIDMixin):
     users = relationship("User", back_populates="client")
     shipments = relationship("Shipment", back_populates="client")
     dispatches = relationship("Dispatch", back_populates="client")
+    tariffs = relationship("ClientTariff", back_populates="client", cascade="all, delete-orphan")
