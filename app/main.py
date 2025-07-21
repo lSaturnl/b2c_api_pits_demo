@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
+from app.routers import shipments
 
 from app.database import SessionLocal
 from app.models.client import Client
@@ -13,6 +14,8 @@ async def lifespan(app: FastAPI):
     # тут можна cleanup, якщо треба
 
 app = FastAPI(lifespan=lifespan)
+
+app.include_router(shipments.router)
 
 # Dependency для отримання сесії
 def get_db():
