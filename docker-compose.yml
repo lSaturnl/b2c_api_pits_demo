@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: b2c_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: b2c_api
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Nerevar1n
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
