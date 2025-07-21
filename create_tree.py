@@ -1,6 +1,10 @@
 import os
 
-REPO_URL = "https://github.com/lSaturnl/b2c_api_pits_demo/blob/main"
+REPO = "lSaturnl/b2c_api_pits_demo"
+BRANCH = "main"
+GITHUB_URL = f"https://github.com/{REPO}/blob/{BRANCH}"
+RAW_URL = f"https://raw.githubusercontent.com/{REPO}/{BRANCH}"
+
 EXCLUDED_DIRS = {'.git', '.venv', '__pycache__'}
 
 def generate_markdown_links(base_path="."):
@@ -18,8 +22,10 @@ def generate_markdown_links(base_path="."):
             rel_path = os.path.join(root, f).replace("\\", "/").lstrip("./")
             if any(part in EXCLUDED_DIRS for part in rel_path.split("/")):
                 continue
-            url = f"{REPO_URL}/{rel_path}"
-            lines.append(f"{indent}  📄 [{f}]({url})")
+            # Головне: одразу додаємо raw-лінк
+            github_url = f"{GITHUB_URL}/{rel_path}"
+            raw_url = f"{RAW_URL}/{rel_path}"
+            lines.append(f"{indent}  📄 [{f}]({github_url}) ([raw]({raw_url}))")
 
     return "\n".join(lines)
 

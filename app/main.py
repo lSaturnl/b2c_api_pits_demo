@@ -37,3 +37,4 @@ def healthcheck(db: Session = Depends(get_db)):
     # Перевіримо, чи можемо прочитати хоча б 1 клієнта
     client = db.query(Client).first()
     return {"status": "ok", "has_clients": bool(client)}
+# TEST
