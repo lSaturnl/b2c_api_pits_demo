@@ -1,10 +1,18 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 
 from app.database import SessionLocal
 from app.models.client import Client
+from app.dependencies.startup import init_parcel_number_counter
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_parcel_number_counter()  # <- виконується при запуску
+    yield
+    # тут можна cleanup, якщо треба
+
+app = FastAPI(lifespan=lifespan)
 
 # Dependency для отримання сесії
 def get_db():

@@ -1,3 +1,4 @@
+#app/models/client_tariff.py
 from sqlalchemy import Column, Numeric, ForeignKey, String
 from sqlalchemy.orm import relationship
 from app.models.base import Base, UUIDMixin
