@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Waybill 10x15</title>
+    <style>
+        @font-face {
+            font-family: 'Code39';
+            src: url("/static/fonts/C39P60-2.TTF") format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100mm;
+            height: 150mm;
+            font-family: Arial, sans-serif;
+            background: #fff;
+        }
+        .barcode {
+            font-family: 'Code39', monospace;
+            font-size: 32pt;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <table style="width:100%; height:0px; " cellspacing="0">
+        <div class="barcode">*123456789*</div>
+    </table>
+</body>
+</html>

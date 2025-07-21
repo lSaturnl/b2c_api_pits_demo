@@ -1,11 +1,12 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from app.routers import shipments
+from app.routers import shipments, labels
 
 from app.database import SessionLocal
 from app.models.client import Client
 from app.dependencies.startup import init_parcel_number_counter
+from fastapi.staticfiles import StaticFiles
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -14,8 +15,10 @@ async def lifespan(app: FastAPI):
     # тут можна cleanup, якщо треба
 
 app = FastAPI(lifespan=lifespan)
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 app.include_router(shipments.router)
+app.include_router(labels.router)
 
 # Dependency для отримання сесії
 def get_db():

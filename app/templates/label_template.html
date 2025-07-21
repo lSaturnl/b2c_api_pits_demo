@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>International waybill</title>
+    <style>
+        @font-face {
+            font-family: 'Code39';
+            src: url("/static/fonts/C39P60-2.TTF");
+        }
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 10pt;
+            margin: 0;
+            padding: 0;
+        }
+        .waybill-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+        .waybill-table td, .waybill-table th {
+            border: 1px solid #000;
+            padding: 2px 4px;
+            vertical-align: top;
+        }
+        .barcode {
+            font-family: 'Code39';
+            font-size: 26pt;
+            text-align: center;
+            margin: 4px 0;
+            letter-spacing: 2px;
+        }
+        .center { text-align: center; }
+        .bold { font-weight: bold; }
+        .tiny { font-size: 7pt; }
+    </style>
+</head>
+<body>
+{% for shipment in shipments %}
+    <table class="waybill-table">
+    <tr>
+        <td colspan="7" class="bold">Post International EU Spółka z o.o.</td>
+        <td colspan="7" class="center bold">International waybill<br>Експрес накладна</td>
+    </tr>
+    <tr>
+        <td colspan="6" rowspan="3">
+            From:<br>
+            IPS Express Sp. z o.o.<br>
+            Rzeszowska 33, 39-200 Dębica, Polska<br>
+            Tel: +48888175413
+        </td>
+        <td colspan="4" class="tiny">
+            No. of item (barcode, if any)<br>
+            May be opened officially
+        </td>
+        <td colspan="2" class="bold center" style="font-size: 13pt;">
+            {{ shipment.tracking_number }}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6" rowspan="3">
+            To:<br>
+            {{ shipment.receiver_name }}<br>
+            {{ shipment.receiver_country or '' }}, {{ shipment.receiver_area_id or '' }}, {{ shipment.receiver_city_id or '' }}, {{ shipment.receiver_street_id or '' }}, {{ shipment.receiver_house or '' }}, {{ shipment.receiver_flat or '' }}<br>
+            Tel: {{ shipment.receiver_phone or '' }}
+        </td>
+        <td colspan="6" class="center">
+            <div class="barcode">*{{ shipment.tracking_number }}*</div>
+            <span class="bold" style="font-size: 13pt;">{{ shipment.tracking_number }}</span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6" class="tiny">
+            Agent Code/Код агента<br>08<br>
+            Importer’s reference (if any) (tax code/VAT No./importer code) (optional)<br>
+            Importer’s telephone/fax/e-mail (if known)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="8" class="center bold">Quantity and detailed description of contents (1)</td>
+        <td class="center bold">Quantity (2)</td>
+        <td class="center bold">Weight (3)</td>
+        <td class="center bold">Value (5)</td>
+    </tr>
+    {% for item in shipment.items %}
+    <tr>
+        <td colspan="8">{{ item.name }}</td>
+        <td class="center">{{ item.quantity }}</td>
+        <td class="center">{{ item.weight }}</td>
+        <td class="center">{{ item.value or "" }} {{ item.value_currency or "" }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="8" class="tiny">
+            For commercial items only If known HS tariff number (7) and country of origin of goods (8)
+        </td>
+        <td class="center bold">Places</td>
+        <td class="center bold">Total Weight (4)</td>
+        <td class="center bold">Total Value (6)</td>
+    </tr>
+    <tr>
+        <td colspan="8"></td>
+        <td class="center">1/1</td>
+        <td class="center">{{ shipment.weight or "" }}</td>
+        <td class="center">
+            {{ shipment.declared_value or "" }} {{ shipment.value_currency or "" }}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="12" class="tiny">Postal charges/Fees (9)</td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2" class="tiny">Category of item (10)</td>
+        <td class="center">Gift</td>
+        <td class="center">Documents</td>
+        <td class="center">Commercial Sample</td>
+        <td class="center bold">Other</td>
+        <td colspan="8"></td>
+    </tr>
+    <tr>
+        <td colspan="14" class="tiny">
+            Comments (11): (e.g.: goods subject to quarantine, sanitary/phytosanitary inspection or other restrictions)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" class="tiny">
+            Я, одержувач, посилку отримав не пошкоджену, претензій не маю.<br>
+            Паспорт:<br>
+            Серія ____ № _______<br>
+            Дата ________ Підпис _________
+        </td>
+        <td colspan="3" class="tiny">
+            Licence(12)/Ліцензія(12)<br>
+            Certificate(13)/Сертифікат(13)<br>
+            Invoice(14)/Рахунок(14)
+        </td>
+        <td colspan="5" class="tiny">
+            I certify that the particulars given in this waybill are correct and that this item does not contain any dangerous article or articles prohibited by legislation or by custom regulations.<br>
+            Я підтверджую, що вказані в даній накладній відомості є достовірними, і що в даному відправленні не міститься ніяких небезпечних або заборонених законодавством або митною регламентацією предметів.
+        </td>
+        <td colspan="3" class="tiny center">
+            Date and Sender’s signature (15)<br>
+            Дата і підпис Відправника(15)<br>
+            <br><br>OV
+        </td>
+    </tr>
+    </table>
+    <div style="page-break-after: always;"></div>
+{% endfor %}
+</body>
+</html>
