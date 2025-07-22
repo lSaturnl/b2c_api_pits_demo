@@ -1,7 +1,7 @@
 import os
 
 REPO = "lSaturnl/b2c_api_pits_demo"
-BRANCH = "main"
+BRANCH = "refs/heads/main"
 GITHUB_URL = f"https://github.com/{REPO}/blob/{BRANCH}"
 RAW_URL = f"https://raw.githubusercontent.com/{REPO}/{BRANCH}"
 

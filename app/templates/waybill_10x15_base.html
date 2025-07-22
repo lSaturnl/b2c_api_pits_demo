@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Waybill 10x15</title>
+    <style>
+        @font-face {
+            font-family: 'Code128';
+            src: 
+            url("/static/fonts/code128.ttf") format("truetype"),   /* для браузера */
+            url("code128.ttf") format("truetype");                 /* для WeasyPrint */
+        }
+        @page {
+            size: 100mm 150mm;
+            margin: 1mm;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            font-size: 6pt;
+            background: #fff;
+        }
+        .wrapper {
+            width: 98mm;
+            height: 148mm;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .barcode {
+            font-family: 'Code128', monospace;
+            font-size: 30pt;
+            letter-spacing: 1px;
+            padding-left: 2px;
+            padding-right: 10px;
+        }
+        .tar{
+            text-align: right;
+        }
+        .tal{
+            text-align: left;
+        }
+        .tac{
+            text-align: center;
+        }
+        table {
+          width: 100%;
+          height: 0px;
+          border-collapse: collapse;
+        }
+        .border {
+            border: black 1px solid;
+        }
+        .plr{
+            padding-left: 1mm;
+            padding-right: 1mm;
+        }
+        .font_small{
+            font-size: 5pt;
+            overflow: visible;
+        }
+        .font_large{
+            font-size: 5.5pt;
+            font-style: normal;
+            font-weight: bold;
+        }
+        .bold{
+            font-family: Arial;
+            font-size: 6pt;
+            font-style: normal;
+            font-weight: bold;
+        }
+        .square_parrent{
+            display: flex;
+            text-align: center;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+        }
+        .square{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border: 2px solid black;
+        }
+        .square_solid{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border: 2px solid black;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <table cellspacing="0">
+            <tr class="border plr">
+                <td class="plr bold" colspan="8">
+                    <p>Post International EU Ltd.</p>
+                </td>
+                <td class="bold plr tar" colspan="4">
+                    International waybill
+                    <br>
+                    Експрес накладна
+                </td>
+            </tr>
+            <tr class="plr">
+                <td class="plr font_small" colspan="6" rowspan="4">
+                    From:
+                    <br>
+                    IPS Express Sp. z oo
+                    <br>
+                    Rzeszowska 33, 39-200 Дебица, Польша
+                    <br>
+                    Tel.: +48888175413 
+                </td>
+                <td class="plr font_small tar" colspan="4" rowspan="2">
+                    No.of item (barcode, if any)
+                    <br>
+                    May be opened officially
+                </td>
+                <td class="bold plr font_large tar" colspan="2" rowspan="2">
+                    DE2142002755066UA
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td class="barcode tac" colspan="6" rowspan="2">
+                    *DE2142002755066UA*
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td class="plr font_small" colspan="6" rowspan="3">
+                    To:
+                    <br>
+                    Колпакова Оксана Михайлівна
+                    <br>
+                    Украина, Одесская обл., Подільський р-н., г. Подольск, ул. Армійська, дом 554, кв. 47
+                    <br>
+                    Tel: 954706052 
+                </td>
+                <td class="bold plr font_large tac" colspan="6">
+                    DE2142002755066UA
+                </td>
+            </tr>
+            <tr>
+                <td class="plr font_small tal" colspan="6">
+                    Agent Code/Код агента
+                </td>
+            </tr>
+            <tr>
+                <td class="plr font_small tal" colspan="6">
+                    08
+                </td>
+            </tr>
+            <tr>
+                <td class="plr font_small tar" colspan="6" rowspan="3">
+                    
+                </td>
+                <td class="plr font_small tal" colspan="6" rowspan="3">
+                    Importer’s reference (if any) (tax code/VAT No./importer code) (optional)
+                    <br>
+                    <br>
+                    Importer’s telephone/fax/e-mail (if known)
+                </td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <td class="plr font_small tac border" colspan="9" rowspan="2">
+                    Quantity and detailed description of contents (1)
+                </td>
+                <td class="plr font_small tac border" colspan="1" rowspan="2">
+                    Quantity (2)
+                </td>
+                <td class="plr font_small tac border" colspan="1"  rowspan="2">
+                    Weight (3)
+                </td>
+                <td class="plr font_small tac border" colspan="1"  rowspan="2">
+                    Value (5)
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td class="plr font_small tal border" colspan="9">
+                    Косметика для губ
+                </td>
+                <td class="plr font_small tac border" colspan="1">
+                    21
+                </td>
+                <td class="plr font_small tac border" colspan="1">
+
+                </td>
+                <td class="plr font_small tac border" colspan="1">
+                    53,68 EUR
+                </td>
+            </tr>
+            <tr>
+                <td class="plr font_small tal border" colspan="9">
+                    Туш
+                </td>
+                <td class="plr font_small tac border" colspan="1">
+                    5
+                </td>
+                <td class="plr font_small tac border" colspan="1">
+                    
+                </td>
+                <td class="plr font_small tac border" colspan="1">
+                    15,92 EUR
+                </td>
+            </tr>
+            <tr>
+                <td class="plr font_small tal border" colspan="9" rowspan="2">
+                    For commercial items only If known HS tariff number (7)
+                    <br>
+                    and country of origin of goods (8)
+                </td>
+                <td class="plr font_small tac border" colspan="1" >
+                Places
+                </td>
+                <td class="plr font_small tac border" colspan="1"  rowspan="2">
+                    Total Weight
+                    <br>
+                    (4)
+                </td>
+                <td class="plr font_small tac border" colspan="1"  rowspan="2">
+                    Total Value (6)
+                </td>
+            </tr>
+            <tr>
+                <td class="plr font_small tac bold font_large border" colspan="1"  rowspan="4">
+                    1/1
+                </td>
+            </tr>
+            <tr>
+                <td class="plr font_small tal border" colspan="9">Postal charges/Fees (9)</td>
+                <td class="plr font_small tar border" colspan="1">0,950</td>
+                <td class="plr font_small tar border" colspan="1">69,60 EUR</td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <td class="plr font_small tal border" colspan="12">
+                    <div class="square_parrent">
+                        Category of item (10)
+                        <div class="square"></div>
+                        Gift
+                        <div class="square"></div>
+                        Documents
+                        <div class="square"></div>
+                        Commercial Sample
+                        <div class="square_solid"></div>
+                        Other
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="plr font_small tal border" colspan="7" rowspan="2">
+                    Comments (11): (e.g.: goods subject to quarantine,
+                    <br>
+                    sanitary/phytosanitary inspection or other restrictions)
+                </td>
+                <td class="plr font_small tac border" colspan="5" rowspan="2">
+                    
+                </td>
+            <tr></tr>
+            <tr>
+                <td class="plr font_small tal border" colspan="4">
+                    Я, одержувач, посилку
+                    <br>
+                    отримав не пошкоджену,
+                    <br>
+                    претензій не маю.
+                    <br>
+                    Паспорт:
+                    <br>
+                    Серія №:
+                    <br>
+                    <br>
+                    Дата
+                    <br>
+                    <br>
+                    Підпис
+                </td>
+                <td class="plr font_small tal border" colspan="3">
+                    Licence(12)/Ліцензія(12)
+                    
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    Certificate(13)/Сертифікат(13)
+                    
+                    <br>
+                    <br>
+                    <br>
+                    Invoice(14)/Рахунок(14)
+                    <br>
+                    <br>
+                </td>
+                <td class="plr font_small tal border" colspan="5">
+                    I certify that the particulars given in this waybill are
+                    <br>
+                    correct and that this item does not contain any dangerous article or
+                    <br>
+                    articles prohibited by legislation or by custom regulations.
+                    <br>
+                    Я підтверджую, що вказані в даній накладній відомості є
+                    <br>
+                    достовірними, і що в даному відправленні не міститься ніяких
+                    <br>
+                    небезпечних або заборонених законодавством або митною регламентацією
+                    <br>
+                    предметів.
+                    <br>
+                    Date and Sender’s signature (15)/
+                    <br>
+                    Дата і підпис Відправника(15)
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
